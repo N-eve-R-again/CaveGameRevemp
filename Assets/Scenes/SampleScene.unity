@@ -6365,9 +6365,12 @@ MonoBehaviour:
   currentoffset: 9
   timer: 1
   speed: 0.05
+  normalSpeed: 0.05
+  brokenSpeed: 0.1
   speedQueue: 2
   scanning: 0
   queueScanning: 0
+  currentState: 0
 --- !u!4 &1549291677
 Transform:
   m_ObjectHideFlags: 0

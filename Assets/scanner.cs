@@ -8,9 +8,20 @@ public class scanner : MonoBehaviour
     public float currentoffset;
     public float timer;
     public float speed;
+    public float normalSpeed;
+    public float brokenSpeed;
     public float speedQueue;
     public bool scanning;
     public bool queueScanning;
+
+    public int scanPower = 5;
+
+    public scanState currentState = scanState.Normal;
+    public enum scanState{
+        Normal,
+        Water,
+        Broken
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +50,7 @@ public class scanner : MonoBehaviour
             }
 
             currentoffset = Mathf.Lerp(-0f, 8f, timer);
+
             mat.SetFloat("_Offset", currentoffset);
         }
         else
@@ -46,11 +58,28 @@ public class scanner : MonoBehaviour
             scanning = false;
             if(queueScanning)
             {
-                timer = 0;
-                scanning = true;
                 queueScanning = false;
+                StartScan();
+
             }
+
         }
+        switch (currentState)
+        {
+            case scanState.Normal:
+                mat.SetFloat("_State", Mathf.Lerp(mat.GetFloat("_State"), 1f, Time.deltaTime));
+                speed = normalSpeed;
+                break;
+            case scanState.Water:
+                break;
+            case scanState.Broken:
+                mat.SetFloat("_State", Mathf.Lerp(mat.GetFloat("_State"), 0f, Time.deltaTime));
+                speed = brokenSpeed;
+                break;
+
+        }
+
+
     }
 
     public void StartScan()
@@ -64,6 +93,7 @@ public class scanner : MonoBehaviour
             timer = 0;
             scanning = true;
             Debug.Log("AAAAAAAAAAAA");
+
         }
 
     }
