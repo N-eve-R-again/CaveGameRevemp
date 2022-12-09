@@ -13,6 +13,8 @@ public class InfoPing : MonoBehaviour
     public GameObject pingUi;
     public GameObject Playercamera;
     public float distance;
+    public InfoData data;
+    public InfoUiAnimation infoCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,12 @@ public class InfoPing : MonoBehaviour
             }
 
         }
+        
+    }
+    public void ShowInfo()
+    {
+        infoCanvas = GameObject.FindObjectOfType<InfoUiAnimation>();
+        infoCanvas.LoadDataOnScreen(data);
 
     }
 }

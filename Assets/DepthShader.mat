@@ -96,7 +96,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Offset: 2.0002348
+    - _Offset: 8
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -105,11 +105,11 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _State: 0.8970011
+    - _State: 1
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _fogOffset: 1.32
+    - _fogOffset: 1.17
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
