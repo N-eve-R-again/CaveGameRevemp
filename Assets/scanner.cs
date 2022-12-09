@@ -64,20 +64,7 @@ public class scanner : MonoBehaviour
             }
 
         }
-        switch (currentState)
-        {
-            case scanState.Normal:
-                mat.SetFloat("_State", Mathf.Lerp(mat.GetFloat("_State"), 1f, Time.deltaTime * 2f));
-                speed = normalSpeed;
-                break;
-            case scanState.Water:
-                break;
-            case scanState.Broken:
-                mat.SetFloat("_State", Mathf.Lerp(mat.GetFloat("_State"), 0f, Time.deltaTime * 10f));
-                speed = brokenSpeed;
-                break;
 
-        }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             scanPower = 10;
@@ -95,9 +82,25 @@ public class scanner : MonoBehaviour
         }
         else
         {
-            if(scanPower < 0)
+            switch (currentState)
+            {
+                case scanState.Normal:
+                    mat.SetFloat("_State", 1f);
+                    speed = normalSpeed;
+                    break;
+                case scanState.Water:
+                    break;
+                case scanState.Broken:
+                    mat.SetFloat("_State", 0f);
+                    speed = brokenSpeed;
+                    break;
+
+            }
+            if (scanPower < 0)
             {
                 currentState = scanState.Broken;
+
+
             }
             else
             {

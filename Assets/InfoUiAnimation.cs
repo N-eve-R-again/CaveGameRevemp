@@ -8,16 +8,24 @@ public class InfoUiAnimation : MonoBehaviour
 {
     // Start is called before the first frame update
     public TextMeshProUGUI[] texts;
+    public FlickerManager[] flickers;
     public Image image;
     public Animator animationManager;
+    private int textnumbers;
     public void LoadDataOnScreen(InfoData tempData)
     {
-        for (int i = 0; i < tempData.texts.Length; i++)
+        textnumbers = tempData.texts.Length;
+        for (int i = 0; i < textnumbers; i++)
         {
             texts[i].SetText(tempData.texts[i]);
         }
+        for (int i = 0; i < textnumbers; i++)
+        {
+            flickers[i].StartFlicker();
+        }
         image.sprite = tempData.artwork;
-        animationManager.Play(tempData.loadAnimation.name);
+        image.GetComponent<FlickerManager>().StartFlicker();
+        animationManager.Play("Enter");
 
     }
 
@@ -27,7 +35,11 @@ public class InfoUiAnimation : MonoBehaviour
         {
             animationManager.Play("Exit");
             FindObjectOfType<UiScanner>().OverrideScan = false;
-
+            for (int i = 0; i < textnumbers; i++)
+            {
+                flickers[i].StopFlicker();
+            }
+            image.GetComponent<FlickerManager>().StopFlicker();
         }
     }
 }

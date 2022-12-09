@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 180764777}
   - component: {fileID: 180764776}
   - component: {fileID: 180764778}
+  - component: {fileID: 180764779}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -502,6 +503,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &180764779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180764774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb856c9587d1ec4695312d45d154cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 180764778}
+  timerFlicker: 0
+  flickerNumber: 5
+  flicker: 0
 --- !u!1 &223896470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5861,13 +5878,13 @@ MonoBehaviour:
   minOffset: 0.5
   maxOffset: 4
   revealed: 0
-  savedInfo: 0
   MainScanner: {fileID: 0}
   pingUi: {fileID: 1184239948}
   Playercamera: {fileID: 330585543}
   distance: 0
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: c4d4b40937040be4580f815843f51305, type: 2}
   infoCanvas: {fileID: 0}
+  currentState: 0
 --- !u!1 &530082980
 GameObject:
   m_ObjectHideFlags: 0
@@ -5990,13 +6007,15 @@ GameObject:
   - component: {fileID: 679480344}
   - component: {fileID: 679480346}
   - component: {fileID: 679480345}
+  - component: {fileID: 679480348}
+  - component: {fileID: 679480347}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &679480344
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6055,6 +6074,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679480343}
   m_CullTransparentMesh: 1
+--- !u!225 &679480347
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679480343}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &679480348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679480343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb856c9587d1ec4695312d45d154cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 679480347}
+  timerFlicker: 0
+  flickerNumber: 5
+  flicker: 0
 --- !u!1 &804016792
 GameObject:
   m_ObjectHideFlags: 0
@@ -7260,13 +7307,22 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
-          inSlope: 0.062134415
-          outSlope: 0.062134415
+          value: 0
+          inSlope: 18.558214
+          outSlope: 18.558214
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.15040557
+          outWeight: 0.75907224
+        - serializedVersion: 3
+          time: 0.035353355
+          value: 0.8419662
+          inSlope: 1.3314586
+          outSlope: 1.3314586
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 0.9743603
           value: 0.97297287
@@ -9126,7 +9182,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 3.04
+    frequency: 10
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
@@ -9348,7 +9404,7 @@ ParticleSystem:
     positionAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -11072,13 +11128,13 @@ MonoBehaviour:
   minOffset: 0.5
   maxOffset: 4
   revealed: 0
-  savedInfo: 0
   MainScanner: {fileID: 0}
   pingUi: {fileID: 139139266}
   Playercamera: {fileID: 330585543}
   distance: 0
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: c4d4b40937040be4580f815843f51305, type: 2}
   infoCanvas: {fileID: 0}
+  currentState: 0
 --- !u!4 &948009661
 Transform:
   m_ObjectHideFlags: 0
@@ -11127,13 +11183,13 @@ MonoBehaviour:
   minOffset: 0.5
   maxOffset: 4
   revealed: 0
-  savedInfo: 0
   MainScanner: {fileID: 0}
   pingUi: {fileID: 1713393265}
   Playercamera: {fileID: 330585543}
   distance: 0
   data: {fileID: 11400000, guid: c4d4b40937040be4580f815843f51305, type: 2}
   infoCanvas: {fileID: 0}
+  currentState: 0
 --- !u!4 &1084106569
 Transform:
   m_ObjectHideFlags: 0
@@ -11607,6 +11663,9 @@ MonoBehaviour:
   texts:
   - {fileID: 180764776}
   - {fileID: 2117279122}
+  flickers:
+  - {fileID: 180764779}
+  - {fileID: 2117279124}
   image: {fileID: 679480345}
   animationManager: {fileID: 1509230160}
 --- !u!95 &1509230160
@@ -11664,7 +11723,7 @@ MonoBehaviour:
   timer: 1
   speed: 0.05
   normalSpeed: 0.03
-  brokenSpeed: 0.2
+  brokenSpeed: 0.1
   speedQueue: 2
   scanning: 0
   queueScanning: 0
@@ -12846,13 +12905,22 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
-          inSlope: 0.062134415
-          outSlope: 0.062134415
+          value: 0
+          inSlope: 18.558214
+          outSlope: 18.558214
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.15040557
+          outWeight: 0.75907224
+        - serializedVersion: 3
+          time: 0.035353355
+          value: 0.8419662
+          inSlope: 1.3314586
+          outSlope: 1.3314586
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 0.9743603
           value: 0.97297287
@@ -14712,7 +14780,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 3.04
+    frequency: 10
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
@@ -14934,7 +15002,7 @@ ParticleSystem:
     positionAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -16637,13 +16705,15 @@ GameObject:
   - component: {fileID: 2117279121}
   - component: {fileID: 2117279123}
   - component: {fileID: 2117279122}
+  - component: {fileID: 2117279125}
+  - component: {fileID: 2117279124}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2117279121
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16761,6 +16831,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117279120}
   m_CullTransparentMesh: 1
+--- !u!114 &2117279124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117279120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb856c9587d1ec4695312d45d154cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 2117279125}
+  timerFlicker: 0
+  flickerNumber: 5
+  flicker: 0
+--- !u!225 &2117279125
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117279120}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &2146609735
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static InfoPing;
 
 public class UiScanner : MonoBehaviour
 {
@@ -89,11 +91,16 @@ public class UiScanner : MonoBehaviour
                     //Debug.Log(hit.transform.name);
                     if(hit2.transform.tag == "InfoPing")
                     {
-                        lastPingSelected = hit2.transform.GetComponentInParent<InfoPing>();
-                        lastPingSelected.ShowInfo();
-                        OverrideScan = true;
-                        scannerWaitTimer = 0;
-                        CanScan = false;
+                        if (MainScanner.currentState != scanner.scanState.Broken)
+                        {
+                            lastPingSelected = hit2.transform.GetComponentInParent<InfoPing>();
+                            lastPingSelected.GetComponentInParent<InfoPing>().currentState = infoState.Saved;
+                            lastPingSelected.ShowInfo();
+                            OverrideScan = true;
+                            scannerWaitTimer = 0;
+                            CanScan = false;
+                        }
+
                     }
                     else
                     {
@@ -120,6 +127,10 @@ public class UiScanner : MonoBehaviour
         else
         {
             scannerWaitTimer = 0;
+            if(MainScanner.currentState == scanner.scanState.Broken)
+            {
+                scannerWaitTimer = 0.2f;
+            }
             alreadyScan = false;
             UiObject.transform.localScale = new Vector3(0f, 0f, 1f);
             if (Input.GetMouseButton(0))
@@ -139,14 +150,26 @@ public class UiScanner : MonoBehaviour
             CanScan = true;
 
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                hitEffect.transform.position = hit.point;
-                hitEffect.Play();
+                if (hit.transform.tag != "InfoPing")
+                {
+                    hitEffect.transform.position = hit.point;
+                    hitEffect.Play();
+                }
+                else
+                {
+                    if (MainScanner.currentState == scanner.scanState.Broken)
+                    {
+                        hit.transform.GetComponentInParent<InfoPing>().currentState = infoState.Corrupted;
+                    }
+
+                }
+
             }
 
         }

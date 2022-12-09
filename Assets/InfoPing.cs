@@ -8,13 +8,20 @@ public class InfoPing : MonoBehaviour
     public float minOffset;
     public float maxOffset;
     public bool revealed;
-    public bool savedInfo;
+
     public scanner MainScanner;
     public GameObject pingUi;
     public GameObject Playercamera;
     public float distance;
     public InfoData data;
     public InfoUiAnimation infoCanvas;
+    public infoState currentState;
+    public enum infoState
+    {
+        NotScanned,
+        Saved,
+        Corrupted
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -41,26 +48,27 @@ public class InfoPing : MonoBehaviour
             revealed = false;
         }
 
-        if(revealed)
+        pingUi.SetActive(revealed);
+
+        switch (currentState)
         {
-            pingUi.SetActive(true);
-            pingUi.GetComponent<MeshRenderer>().material.color = Color.yellow;
-        }
-        else
-        {
-            if (savedInfo)
-            {
+            case infoState.NotScanned:
+                pingUi.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                break;
+            case infoState.Saved:
                 pingUi.SetActive(true);
                 pingUi.GetComponent<MeshRenderer>().material.color = Color.cyan;
-            }
-            else
-            {
-                pingUi.SetActive(false);
-                pingUi.GetComponent<MeshRenderer>().material.color = Color.yellow;
-            }
 
+                break;
+            case infoState.Corrupted:
+                pingUi.SetActive(true);
+                pingUi.GetComponent<MeshRenderer>().material.color = Color.green;
+
+                break;
+            default:
+                break;
         }
-        
+
     }
     public void ShowInfo()
     {
