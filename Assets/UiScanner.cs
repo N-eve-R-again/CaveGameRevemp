@@ -53,7 +53,7 @@ public class UiScanner : MonoBehaviour
                 if (Physics.Raycast(ray,out hit))
                 {
                     Debug.Log(hit.transform.name);
-                    Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAA");
+                    //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAA");
                 }
 
 
@@ -74,7 +74,14 @@ public class UiScanner : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetMouseButton(0) && !alreadyScan && CanScan && !OverrideScan)
         {
-            scannerWaitTimer += Time.deltaTime;
+            if(MainScanner.currentState == scanner.scanState.Broken)
+            {
+                scannerWaitTimer += Time.deltaTime * 3f;
+            }
+            else
+            {
+                scannerWaitTimer += Time.deltaTime;
+            }
             UiObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, UiObject.transform.position.z);
 
             Vector3 temp = new Vector3((Input.mousePosition.x - Screen.width / 2) / Screen.width, -(Input.mousePosition.y - Screen.height / 2) / Screen.height, 0f);
@@ -85,22 +92,40 @@ public class UiScanner : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit2;
 
-                // Create a particle if hit
                 if (Physics.Raycast(ray, out hit2))
                 {
-                    //Debug.Log(hit.transform.name);
                     if(hit2.transform.tag == "InfoPing")
                     {
-                        if (MainScanner.currentState != scanner.scanState.Broken)
+
+                        lastPingSelected = hit2.transform.GetComponentInParent<InfoPing>();
+
+                        if (MainScanner.currentState == scanner.scanState.Broken)
                         {
-                            lastPingSelected = hit2.transform.GetComponentInParent<InfoPing>();
-                            lastPingSelected.GetComponentInParent<InfoPing>().currentState = infoState.Saved;
+                            if (lastPingSelected.currentState != infoState.Saved)
+                            {
+                                lastPingSelected.currentState = infoState.Corrupted;
+                            }
+
+                        }
+                        else
+                        {
+                            lastPingSelected.currentState = infoState.Saved;
                             lastPingSelected.ShowInfo();
                             OverrideScan = true;
-                            scannerWaitTimer = 0;
-                            CanScan = false;
-                        }
 
+                        }
+                        scannerWaitTimer = 0;
+                        CanScan = false;
+
+                    }
+                    else if (hit2.transform.tag == "MoveArrow")
+                    {
+                        MoveArrow arrowtemp = hit2.transform.GetComponentInParent<MoveArrow>();
+                        arrowtemp.UseArrow();
+
+                        arrowtemp.currentState = MoveArrow.infoState.Saved;
+                        scannerWaitTimer = 0;
+                        CanScan = false;
                     }
                     else
                     {
@@ -108,21 +133,9 @@ public class UiScanner : MonoBehaviour
                         alreadyScan = true;
                         CanScan = false;
                     }
-
-
-
                 }
-
-
                 UiObject.transform.localScale = new Vector3(0f, 0f, 1f);
-
             }
-
-
-            //Debug.Log(Physics.Raycast(ray));
-
-            // assign new position to where finger was pressed
-
         }
         else
         {
@@ -150,31 +163,21 @@ public class UiScanner : MonoBehaviour
             CanScan = true;
 
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag != "InfoPing")
+                if (hit.transform.tag != "InfoPing" || hit.transform.tag != "MoveArrow")
                 {
                     hitEffect.transform.position = hit.point;
                     hitEffect.Play();
-                }
-                else
-                {
-                    if (MainScanner.currentState == scanner.scanState.Broken)
-                    {
-                        hit.transform.GetComponentInParent<InfoPing>().currentState = infoState.Corrupted;
-                    }
-
                 }
 
             }
 
         }
-
 #endif
-
     }
 }

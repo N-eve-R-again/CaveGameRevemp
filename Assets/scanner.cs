@@ -14,6 +14,8 @@ public class scanner : MonoBehaviour
     public bool scanning;
     public bool queueScanning;
 
+
+    public bool changeStateStunned;
     public int scanPower = 5;
 
     public scanState currentState = scanState.Normal;
@@ -59,7 +61,18 @@ public class scanner : MonoBehaviour
             if(queueScanning)
             {
                 queueScanning = false;
-                StartScan();
+                if(!changeStateStunned)
+                {
+                    StartScan();
+
+                }
+                else
+                {
+                    changeStateStunned = false;
+                    mat.SetFloat("_State", 0f);
+                    speed = brokenSpeed;
+                }
+
 
             }
 
@@ -67,7 +80,7 @@ public class scanner : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            scanPower = 10;
+            scanPower = 5;
             currentState = scanState.Normal;
         }
 
@@ -79,6 +92,13 @@ public class scanner : MonoBehaviour
         if (scanning)
         {
             queueScanning = true;
+            if (scanPower == 0)
+            {
+                currentState = scanState.Broken;
+                changeStateStunned = true;
+                scanPower = -1;
+
+            }
         }
         else
         {
@@ -96,7 +116,7 @@ public class scanner : MonoBehaviour
                     break;
 
             }
-            if (scanPower < 0)
+            if (scanPower <= 0)
             {
                 currentState = scanState.Broken;
 
