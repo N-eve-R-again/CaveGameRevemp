@@ -28,7 +28,7 @@ public class UiScanner : MonoBehaviour
     {
 
 
-        for (var i = 0; i < Input.touchCount; i++)
+        /*for (var i = 0; i < Input.touchCount; i++)
         {
             CameraOffset.UserMovement = Input.GetTouch(i).position;
             //Debug.Log(Input.GetTouch(i).phase);
@@ -69,7 +69,7 @@ public class UiScanner : MonoBehaviour
                 UiObject.transform.localScale = new Vector3(0f, 0f, 1f);
             }
 
-        }
+        }*/
 
 #if UNITY_EDITOR
         if (Input.GetMouseButton(0) && !alreadyScan && CanScan && !OverrideScan)

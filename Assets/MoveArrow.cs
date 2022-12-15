@@ -7,7 +7,7 @@ public class MoveArrow : MonoBehaviour
     public float minOffset;
     public float maxOffset;
     public bool revealed;
-
+    public int dir;
     public scanner MainScanner;
     public GameObject arrowUi;
     public GameObject Playercamera;
@@ -66,6 +66,8 @@ public class MoveArrow : MonoBehaviour
     }
     public void UseArrow()
     {
+        Debug.Log("ARROW CLICK");
+        gameManager.dir = dir;
         gameManager.StartFade();
 
     }

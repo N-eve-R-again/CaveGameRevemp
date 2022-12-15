@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
     public scanner mscanner;
     public FadeManager fadeManager;
     public bool QueueChanging;
-
-    bool dir;
+    public int dir;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +21,10 @@ public class GameManager : MonoBehaviour
     {
         if (fadeManager.Fading && QueueChanging)
         {
-            if (currentScene < scenes.Length - 1)
+            Debug.Log("QUEUE CHANGE");
+            if (currentScene < scenes.Length - dir)
             {
-                currentScene += 1;
+                currentScene += dir;
 
                 ActualizeScene();
                 mscanner.timer = 0.99f;
@@ -35,15 +35,17 @@ public class GameManager : MonoBehaviour
 
     public void StartFade()
     {
-        if (currentScene < scenes.Length - 1)
+        if (currentScene < scenes.Length - dir)
         {
+            Debug.Log("ANIM");
             fadeManager.GetComponent<Animator>().Play("FadeToBlack");
             QueueChanging = true;
         }
     }
     public void ActualizeScene()
     {
+        Debug.Log("CCCCCCCCCCCCCCC");
         scenes[currentScene].ShowScene();
-        scenes[currentScene - 1].HideScene();
+        scenes[currentScene - dir].HideScene();
     }
 }

@@ -8,7 +8,7 @@ public class SceneHandeler : MonoBehaviour
     public Transform CameraPivot;
     public GameObject ParticleSystem;
     public GyroCamOffset cameraManager;
-    public InfoPing[] Pings;
+    public GameObject[] Pings;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +24,8 @@ public class SceneHandeler : MonoBehaviour
 
         for (int i = 0; i < Pings.Length; i++)
         {
-            Pings[i].gameObject.SetActive(true);
+            Pings[i].SetActive(true);
         }
-        Debug.Log("SHOW SCENE");
     }
     public void HideScene()
     {
@@ -34,8 +33,8 @@ public class SceneHandeler : MonoBehaviour
         ParticleSystem.SetActive(false);
         for (int i = 0; i < Pings.Length; i++)
         {
-            Pings[i].gameObject.SetActive(false);
+            Pings[i].SetActive(false);
         }
-        Debug.Log("Hide SCENE");
+
     }
 }
