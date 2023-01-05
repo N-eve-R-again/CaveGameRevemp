@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public SceneHandeler[] scenes;
     public int currentScene;
+    public UiScanner uiscanner;
     public scanner mscanner;
     public FadeManager fadeManager;
     public bool QueueChanging;
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         scenes[0].ShowScene();
     }
 
@@ -21,7 +23,7 @@ public class GameManager : MonoBehaviour
     {
         if (fadeManager.Fading && QueueChanging)
         {
-            Debug.Log("QUEUE CHANGE");
+
             if (currentScene < scenes.Length - dir)
             {
                 currentScene += dir;
@@ -37,15 +39,26 @@ public class GameManager : MonoBehaviour
     {
         if (currentScene < scenes.Length - dir)
         {
-            Debug.Log("ANIM");
             fadeManager.GetComponent<Animator>().Play("FadeToBlack");
             QueueChanging = true;
         }
     }
     public void ActualizeScene()
     {
-        Debug.Log("CCCCCCCCCCCCCCC");
         scenes[currentScene].ShowScene();
+        if (scenes[currentScene].riverScene)
+        {
+            uiscanner.OverrideScan = true;
+        }
+        else
+        {
+            uiscanner.OverrideScan = false;
+        }
         scenes[currentScene - dir].HideScene();
+    }
+
+    public void StartRiverLevel()
+    {
+
     }
 }

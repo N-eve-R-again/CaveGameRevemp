@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InfoPing
   - MoveArrow
+  - Water
   layers:
   - Default
   - TransparentFX

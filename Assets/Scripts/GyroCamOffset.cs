@@ -9,8 +9,12 @@ public class GyroCamOffset : MonoBehaviour
     public Vector3 baseRot;
     public Vector3 UserMovement;
     public Vector3 ApplyRot;
+    public Vector3 targetOffset;
     public float GyroForce;
     public float MaxOffset;
+
+    public bool targetMov;
+    public Transform targetTransform;
 
     void Start()
     {
@@ -26,6 +30,8 @@ public class GyroCamOffset : MonoBehaviour
         baseRot = NewPos.rotation.eulerAngles;
         transform.position = NewPos.position;
         ApplyRot = baseRot;
+        transform.rotation = Quaternion.Euler(ApplyRot);
+        UserMovement = Vector2.zero;
     }
 
     // Update is called once per frame
@@ -34,13 +40,21 @@ public class GyroCamOffset : MonoBehaviour
         //UserMovement = m_Gyro.userAcceleration;
         //UserMovement = m_Gyro.userAcceleration * Time.deltaTime * GyroForce;
 
-        ApplyRot.x = Mathf.Clamp(baseRot.x + UserMovement.y *GyroForce, baseRot.x - MaxOffset, baseRot.x + MaxOffset);
-        ApplyRot.y = Mathf.Clamp(baseRot.y + UserMovement.x * GyroForce, baseRot.y - MaxOffset, baseRot.y + MaxOffset);
-        //ApplyRot.z = Mathf.Clamp(ApplyRot.z + UserMovement.z, baseRot.z - 10f, baseRot.z + 10f);
+        if (targetMov)
+        {
+            transform.position = targetTransform.position - targetOffset;
+        }
+        else
+        {
+            ApplyRot.x = Mathf.Clamp(baseRot.x + UserMovement.y * GyroForce, baseRot.x - MaxOffset, baseRot.x + MaxOffset);
+            ApplyRot.y = Mathf.Clamp(baseRot.y + UserMovement.x * GyroForce, baseRot.y - MaxOffset, baseRot.y + MaxOffset);
+            //ApplyRot.z = Mathf.Clamp(ApplyRot.z + UserMovement.z, baseRot.z - 10f, baseRot.z + 10f);
 
-        //transform.Rotate(ApplyRot.x, ApplyRot.y, ApplyRot.z);
+            //transform.Rotate(ApplyRot.x, ApplyRot.y, ApplyRot.z);
 
-        transform.rotation = Quaternion.Euler(ApplyRot);
+            transform.rotation = Quaternion.Euler(ApplyRot);
+        }
+
         
     }
     private static Quaternion GyroToUnity(Quaternion q)

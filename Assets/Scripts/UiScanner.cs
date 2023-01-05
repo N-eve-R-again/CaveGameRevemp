@@ -18,6 +18,7 @@ public class UiScanner : MonoBehaviour
     public InfoPing lastPingSelected;
     public bool alreadyScan;
     public ParticleSystem hitEffect;
+    public ParticleSystem hitEffectWater;
     void Start()
     {
         UiObject.transform.localScale = new Vector3(0f, 0f, 1f);
@@ -28,50 +29,6 @@ public class UiScanner : MonoBehaviour
     {
 
 
-        /*for (var i = 0; i < Input.touchCount; i++)
-        {
-            CameraOffset.UserMovement = Input.GetTouch(i).position;
-            //Debug.Log(Input.GetTouch(i).phase);
-            if (Input.GetTouch(i).phase != TouchPhase.Ended && CanScan)
-            {
-                scannerWaitTimer += Time.deltaTime;
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-                RaycastHit hit;
-                UiObject.transform.localScale = new Vector3(scannerWaitTimer * 3 + 0.5f, scannerWaitTimer * 3, 1f);
-                UiObject.transform.position = new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, UiObject.transform.position.z);
-                
-                if (scannerWaitTimer > scannerWaitTime)
-                {
-                    MainScanner.StartScan();
-                    alreadyScan = true;
-                    CanScan = false;
-                    UiObject.transform.localScale = new Vector3(0f, 0f, 1f);
-
-                }
-
-                // Create a particle if hit
-                if (Physics.Raycast(ray,out hit))
-                {
-                    Debug.Log(hit.transform.name);
-                    //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAA");
-                }
-
-
-
-
-
-            }
-            else if(Input.GetTouch(i).phase == TouchPhase.Ended)
-            {
-                scannerWaitTimer = 0f;
-                alreadyScan = false;
-                CanScan = true;
-                UiObject.transform.localScale = new Vector3(0f, 0f, 1f);
-            }
-
-        }*/
-
-#if UNITY_EDITOR
         if (Input.GetMouseButton(0) && !alreadyScan && CanScan && !OverrideScan)
         {
             if(MainScanner.currentState == scanner.scanState.Broken)
@@ -169,15 +126,24 @@ public class UiScanner : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag != "InfoPing" || hit.transform.tag != "MoveArrow")
+                if (hit.transform.tag != "InfoPing" && hit.transform.tag != "MoveArrow")
                 {
-                    hitEffect.transform.position = hit.point;
-                    hitEffect.Play();
+                    if(hit.transform.tag == "Water")
+                    {
+                        hitEffectWater.transform.position = hit.point + new Vector3(0f,0.05f,0f);
+                        hitEffectWater.Play();
+                    }
+                    else
+                    {
+                        hitEffect.transform.position = hit.point;
+                        hitEffect.Play();
+                    }
+
                 }
 
             }
 
         }
-#endif
+
     }
 }

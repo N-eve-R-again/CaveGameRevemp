@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Water
+  m_Shader: {fileID: -6465566751694194690, guid: 3c7adc2d9a61cd14eae1af6fceb29e3a,
+    type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Distance: 3.34
+    - _DoubleScroll: 0
+    - _EditorMode: 1
+    - _FoamDensity: 0
+    - _FoamDepthFade: 1.05
+    - _FoamDepthStep: 0.31
+    - _FoamFade: 0.25
+    - _FoamNoiseScale: 6.69
+    - _FoamNoiseSpeed: 0.2
+    - _FoamPixel: 64
+    - _FoamPixelSize: 64
+    - _FoamScale: 9.08
+    - _FoamSpeed: 0.04
+    - _FoamStep: 0.86
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _VertexWaveHeight: 0.02
+    - _WaveDoubleNoise: 0
+    - _WaveHeight: 0.02
+    - _WaveNoiseScale: 1.21
+    - _WaveNoiseSpeed: 0
+    - _WavePixelSize: 16
+    - _WaveScale: 2.49
+    - _WaveSpeed: 0.51
+    - _fog: 1.17
+    - _pixel: 16
+    - _step: 0.41
+    m_Colors:
+    - _Color: {r: 0.11486859, g: 0, b: 0.22745094, a: 1}
+    - _Color2: {r: 0.024383154, g: 0, b: 0.066037714, a: 1}
+    - _FoamColor: {r: 0.3207547, g: 0, b: 0.26545215, a: 1}
+    - _WaveColor1: {r: 0.13797168, g: 0, b: 0.16981131, a: 0}
+    - _WaveColor2: {r: 0, g: 0.055666458, b: 0.0754717, a: 0}
+    - _WaveDir: {r: 1, g: 1, b: 0, a: 0}
+    - _WaveScrollDirection: {r: 0.5, g: 0.5, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!114 &6573601473652863973
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5

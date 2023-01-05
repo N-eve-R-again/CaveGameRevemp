@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SceneHandeler : MonoBehaviour
 {
-    public GameObject Mesh;
+
     public Transform CameraPivot;
-    public GameObject ParticleSystem;
     public GyroCamOffset cameraManager;
-    public GameObject[] Pings;
+    public GameObject[] Objects;
+    public Transform riverModePlayer;
+
+    public bool riverScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,23 +20,31 @@ public class SceneHandeler : MonoBehaviour
     // Update is called once per frame
     public void ShowScene()
     {
-        Mesh.SetActive(true);
-        ParticleSystem.SetActive(true);
         cameraManager.UpdatePosition(CameraPivot);
-
-        for (int i = 0; i < Pings.Length; i++)
+        if(riverScene)
         {
-            Pings[i].SetActive(true);
+            cameraManager.targetTransform = riverModePlayer;
+            cameraManager.targetMov = true;
+        }
+        else
+        {
+            cameraManager.targetMov = false;
+        }
+
+
+        for (int i = 0; i < Objects.Length; i++)
+        {
+            Objects[i].SetActive(true);
         }
     }
     public void HideScene()
     {
-        Mesh.SetActive(false);
-        ParticleSystem.SetActive(false);
-        for (int i = 0; i < Pings.Length; i++)
+
+        for (int i = 0; i < Objects.Length; i++)
         {
-            Pings[i].SetActive(false);
+            Objects[i].SetActive(false);
         }
 
     }
+
 }

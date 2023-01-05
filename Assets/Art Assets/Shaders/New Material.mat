@@ -123,10 +123,23 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _Distance: -0.46
+    - _DoubleScroll: 0
     - _DstBlend: 0
     - _EMISSION_WEIGHT: 1
+    - _EditorMode: 1
     - _EnvironmentReflections: 1
     - _Float: 0.33
+    - _FoamDensity: -0.59
+    - _FoamDepthFade: 0
+    - _FoamDepthStep: 0.5
+    - _FoamFade: 1
+    - _FoamNoiseScale: 10
+    - _FoamNoiseSpeed: 0.5
+    - _FoamPixelSize: 32
+    - _FoamScale: 10
+    - _FoamScrollSpeed: 0.5
+    - _FoamSpeed: 0.5
+    - _FoamStep: 0.26
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -146,8 +159,18 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _TRANSPARENCY: 0
+    - _VertexWaveHeight: 1
+    - _WaveDoubleNoise: 0
+    - _WaveHeight: 1
+    - _WaveNoiseScale: 1
+    - _WaveNoiseSpeed: 0.1
+    - _WavePixelSize: 16
+    - _WaveScale: 1
+    - _WaveSpeed: 0.1
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _fog: 100
+    - _step: 0
     m_Colors:
     - _BASE_COLOR: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
@@ -155,8 +178,13 @@ Material:
     - _Color2: {r: 0.103577726, g: 0.034264863, b: 0.2075471, a: 1}
     - _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
     - _REFLECTIONS_COLOR: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _WaveColor1: {r: 0, g: 0.7535582, b: 1, a: 0}
+    - _WaveColor2: {r: 0.08472804, g: 0, b: 0.35849056, a: 0}
+    - _WaveDir: {r: -1, g: 1, b: 0, a: 0}
+    - _WaveScrollDirection: {r: -1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3403848760816399508
 MonoBehaviour:
