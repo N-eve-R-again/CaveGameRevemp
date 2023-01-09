@@ -31,6 +31,7 @@ public class MenuManager : MonoBehaviour
         MiniPause.interactable = true;
         MiniPause.blocksRaycasts = true;
         ScannerTutorial.alpha = 0f;
+        tutorialScanAvailable = false;
     }
     public void PauseOpen()
     {
@@ -86,7 +87,22 @@ public class MenuManager : MonoBehaviour
 
     public void OpenCodex()
     {
-        //open codex
+        Codex.alpha = 1f;
+        Codex.interactable = true;
+        Codex.blocksRaycasts = true;
+        Codex.gameObject.GetComponent<CodexManager>().index = 0;
+        Codex.gameObject.GetComponent<CodexManager>().ChangeInfo(0);
+        Codex.gameObject.GetComponent<CodexManager>().OpenPage();
+
+    }    
+    public void CloseCodex()
+    {
+        Codex.alpha = 0f;
+        Codex.interactable = false;
+        Codex.blocksRaycasts = false;
+        PauseClose();
+        Codex.gameObject.GetComponent<CodexManager>().ClosePage();
+        //Codex.gameObject.GetComponent<CodexManager>().bg.StopFlicker();
 
     }
 }

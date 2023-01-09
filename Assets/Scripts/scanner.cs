@@ -94,7 +94,8 @@ public class scanner : MonoBehaviour
     
     public void Recharge()
     {
-        scanPower = 10;
+        scanPower += 5;
+        scanPower = Mathf.Clamp(scanPower, 0, 10);
         currentState = scanState.Normal;
         gameObject.GetComponent<UiScanner>().UpdatePowerBar(scanPower);
     }

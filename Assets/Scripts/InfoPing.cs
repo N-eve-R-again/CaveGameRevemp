@@ -72,8 +72,16 @@ public class InfoPing : MonoBehaviour
     }
     public void ShowInfo()
     {
-        infoCanvas = GameObject.FindObjectOfType<InfoUiAnimation>();
-        infoCanvas.LoadDataOnScreen(data);
+        infoCanvas = FindObjectOfType<InfoUiAnimation>();
+        if(currentState == infoState.Corrupted)
+        {
+            infoCanvas.LoadDataOnScreen(data, true);
+        }
+        else
+        {
+            infoCanvas.LoadDataOnScreen(data, false);
+        }
+        
 
     }
 }

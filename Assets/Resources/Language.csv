@@ -6,3 +6,8 @@
 "pause_menu_codex","/DATA","/DATA"
 "info_placeholder_name","Place Holder","Teneur de Place"
 "info_placeholder_descr","Description of the Place Holder information.","Description de l'information du Teneur de Place."
+"info_placeholder_descr_long","Description of the Place Holder information but really really really really really really long","Description de l'information du Teneur de Place mais vraiment vraiment vraiment vraiment vraiment vraiment long"
+"info_placeholder1_name","Place Holder 2","Teneur de Place 2"
+"info_placeholder1_descr_long","Place Holder 2 desc long","Teneur de Place 2 desc long"
+"info_placeholder1_descr","Place Holder 2 desc ","Teneur de Place 2 desc"
+"info_locked","/LOCKED","/LOCKED"

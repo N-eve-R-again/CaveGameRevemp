@@ -8,6 +8,7 @@ public class InfoData : ScriptableObject
     
     public Sprite artwork;
     public string[] texts;
+    public int codexIndex;
     //public AnimationClip loadAnimation;
 
 }

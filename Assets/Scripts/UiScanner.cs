@@ -106,10 +106,11 @@ public class UiScanner : MonoBehaviour
                         else
                         {
                             lastPingSelected.currentState = infoState.Saved;
-                            lastPingSelected.ShowInfo();
+                            
                             OverrideScan = true;
 
                         }
+                        lastPingSelected.ShowInfo();
                         scannerWaitTimer = 0;
                         CanScan = false;
 
@@ -120,6 +121,12 @@ public class UiScanner : MonoBehaviour
                         arrowtemp.UseArrow();
 
                         arrowtemp.currentState = MoveArrow.infoState.Saved;
+                        scannerWaitTimer = 0;
+                        CanScan = false;
+                    }else if (hit2.transform.tag == "Cristal")
+                    {
+                        Cristal cristaltemp = hit2.transform.GetComponentInParent<Cristal>();
+                        cristaltemp.Recolt();
                         scannerWaitTimer = 0;
                         CanScan = false;
                     }
