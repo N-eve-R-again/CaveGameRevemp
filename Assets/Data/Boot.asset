@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content:
   - BootTest().FindPowerInitiate.
-  - "GeminiTaurus-EvaProjects\xA9 30XX ETPA-deposited"
+  - Date() -get -data
+  - X# / X# / 40XX
+  - "GeminiTaurus-EvaProjects\xA9 40XX ETPA-deposited"
   - BootName -set -CaveGameRevemp
   - 'MissionActualize(Power.FIND) -sendback root:4206 -set '
   - ObjectiveLocalized -map 44-51-30-N, 1-45-01-E

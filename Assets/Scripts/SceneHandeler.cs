@@ -44,7 +44,11 @@ public class SceneHandeler : MonoBehaviour
         {
             AudioManager.instance.FadeLP(2);
             cameraManager.targetMov = false;
-            FindObjectOfType<MenuManager>().CloseUiRiver();
+            if (!FindObjectOfType<MenuManager>().tutorialScanAvailable)
+            {
+                FindObjectOfType<MenuManager>().CloseUiRiver();
+            }
+
         }
 
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1651,7 +1651,7 @@ MonoBehaviour:
   currentScreen: 0
   startButton: {fileID: 1152550108}
   TitleDrop: {fileID: 1511070489}
-  impact: 17
+  impact: 19
   languageButtons:
   - {fileID: 1630463763}
   - {fileID: 58582208}
