@@ -27,10 +27,9 @@ public class scanner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mat.SetFloat("_Offset", 9);
-#if UNITY_EDITOR
-        //mat.SetInt("_EditorMode", 1);
-#endif
+        mat.SetFloat("_Offset", 9f);
+        mat.SetFloat("_State", 0f);
+
     }
 
     // Update is called once per frame
@@ -51,19 +50,26 @@ public class scanner : MonoBehaviour
                 timer += Time.deltaTime * speed;
             }
 
-            currentoffset = Mathf.Lerp(-0f, 8f, timer);
+            currentoffset = Mathf.Lerp(-0f, 6f, timer);
 
             mat.SetFloat("_Offset", currentoffset);
         }
         else
         {
             scanning = false;
-            if(queueScanning)
+            //Debug.Log("quesquecest");
+            if (queueScanning)
             {
+                //AudioManager.instance.FadeOS(1);
+
+                //AudioManager.instance.PlayOS(0);
+                AudioManager.instance.FadeOS(2);
+                AudioManager.instance.FadeOS(3);
                 queueScanning = false;
                 if(!changeStateStunned)
                 {
                     StartScan();
+                    
 
                 }
                 else
@@ -77,24 +83,36 @@ public class scanner : MonoBehaviour
             }
 
         }
-
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            scanPower = 5;
-            currentState = scanState.Normal;
+            Recharge();
         }
 
 
-    }
 
+    }
+    
+    public void Recharge()
+    {
+        scanPower = 10;
+        currentState = scanState.Normal;
+        gameObject.GetComponent<UiScanner>().UpdatePowerBar(scanPower);
+    }
     public void StartScan()
     {
+        if (FindObjectOfType<MenuManager>().tutorialScanAvailable)
+        {
+            FindObjectOfType<MenuManager>().InitMenu();
+        }
+
+        gameObject.GetComponent<UiScanner>().UpdatePowerBar(scanPower);
         if (scanning)
         {
             queueScanning = true;
             if (scanPower == 0)
             {
                 currentState = scanState.Broken;
+                AudioManager.instance.PlayOS(4);
                 changeStateStunned = true;
                 scanPower = -1;
 
@@ -102,32 +120,44 @@ public class scanner : MonoBehaviour
         }
         else
         {
+            if (scanPower == 0)
+            {
+                currentState = scanState.Broken;
+                AudioManager.instance.PlayOS(4);
+                scanPower = -1;
+
+
+            }
+            else 
+            {
+                if (scanPower > -1)
+                {
+                    scanPower -= 1;
+                }
+
+                scanning = true;
+                timer = 0;
+
+            }
             switch (currentState)
             {
                 case scanState.Normal:
                     mat.SetFloat("_State", 1f);
                     speed = normalSpeed;
+                    AudioManager.instance.PlayOS(2);
                     break;
                 case scanState.Water:
                     break;
                 case scanState.Broken:
                     mat.SetFloat("_State", 0f);
+                    AudioManager.instance.PlayOS(3);
                     speed = brokenSpeed;
                     break;
-
+                    
             }
-            if (scanPower <= 0)
-            {
-                currentState = scanState.Broken;
 
 
-            }
-            else
-            {
-                scanPower -= 1;
-            }
-            timer = 0;
-            scanning = true;
+
             //Debug.Log("AAAAAAAAAAAA");
 
         }

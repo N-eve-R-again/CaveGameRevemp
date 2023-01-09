@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b106397734f24f499caa844a9286415, type: 3}
+  m_Name: Boot
+  m_EditorClassIdentifier: 
+  content:
+  - BootTest().FindPowerInitiate.
+  - "GeminiTaurus-EvaProjects\xA9 30XX ETPA-deposited"
+  - BootName -set -CaveGameRevemp
+  - 'MissionActualize(Power.FIND) -sendback root:4206 -set '
+  - ObjectiveLocalized -map 44-51-30-N, 1-45-01-E
+  - Calculate(Time.arrival) -wait(i)
+  - ' '
+  - '########################'
+  - Wait 1211
+  - Wait 876
+  - Wait 207
+  - System(Fall.Dampen) -activateDelay
+  - Wait 156
+  - Wait 63
+  - Wait 32
+  - Wait 10
+  - Impact(Send.message(StatusCheck))
+  - '########################'
+  - ' '
+  - XGLOBALFAILURE -errorCode 689741a23j
+  - MainCameraFailure -safemode --request
+  - Check -a Scanner/Load/RescueScan.boot
+  - RescueScan OK
+  - Check -r Scanner/Load/GlobalScan.boot -a //n
+  - GlobalScan.mode Set(heatmap)
+  - GlobalScan LOAD OK
+  - ' '
+  - Check IA/Status.boot -reload -deepcore //all
+  - CoreCheck Fail 1/3 -get -result 0% integrity
+  - CoreCheck Fail 2/3  -get -result XQ@C integrity
+  - CoreCheck Fail 3/3 -get -result XXXXXXXXXX integrity fail
+  - ' '
+  - Manual(Override) recommended -get -port:6665
+  - ' '
+  - ' '
+  - ' '
+  - Waiting for Input...

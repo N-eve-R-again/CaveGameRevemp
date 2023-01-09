@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public bool QueueChanging;
     public int dir;
     // Start is called before the first frame update
-    void Start()
+    public void LateStart()
     {
 
+        
+        AudioManager.instance.PlayLP(0);
         scenes[0].ShowScene();
     }
 
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
 
                 ActualizeScene();
                 mscanner.timer = 0.99f;
+                mscanner.currentoffset = 9f;
                 QueueChanging = false;
             }
         }
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour
         {
             fadeManager.GetComponent<Animator>().Play("FadeToBlack");
             QueueChanging = true;
+            
         }
     }
     public void ActualizeScene()

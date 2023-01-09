@@ -33,7 +33,7 @@ public class InfoPing : MonoBehaviour
         distance = Vector3.Distance(Playercamera.transform.position, transform.position);
         minOffset = distance / 10f;
         maxOffset = minOffset + distance * (1f + minOffset*2f);
-        maxOffset = Mathf.Clamp(maxOffset, minOffset, 7.9f);
+        maxOffset = Mathf.Clamp(maxOffset, minOffset, 5.9f);
     }
     // Update is called once per frame
     void Update()

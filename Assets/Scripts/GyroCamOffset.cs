@@ -10,10 +10,14 @@ public class GyroCamOffset : MonoBehaviour
     public Vector3 UserMovement;
     public Vector3 ApplyRot;
     public Vector3 targetOffset;
+    public Vector3 shakeOffset;
+    public Vector3 basePos;
     public float GyroForce;
     public float MaxOffset;
+    public float shakeForce;
 
     public bool targetMov;
+    public bool lockMov;
     public Transform targetTransform;
 
     void Start()
@@ -28,7 +32,7 @@ public class GyroCamOffset : MonoBehaviour
     public void UpdatePosition(Transform NewPos)
     {
         baseRot = NewPos.rotation.eulerAngles;
-        transform.position = NewPos.position;
+        basePos = NewPos.position;
         ApplyRot = baseRot;
         transform.rotation = Quaternion.Euler(ApplyRot);
         UserMovement = Vector2.zero;
@@ -39,24 +43,29 @@ public class GyroCamOffset : MonoBehaviour
     {
         //UserMovement = m_Gyro.userAcceleration;
         //UserMovement = m_Gyro.userAcceleration * Time.deltaTime * GyroForce;
+  
+            if (targetMov)
+            {
+                transform.position = targetTransform.position - targetOffset + shakeOffset * shakeForce;
+            }
+            else
+            {
+                ApplyRot.x = Mathf.Clamp(baseRot.x + UserMovement.y * GyroForce, baseRot.x - MaxOffset, baseRot.x + MaxOffset);
+                ApplyRot.y = Mathf.Clamp(baseRot.y + UserMovement.x * GyroForce, baseRot.y - MaxOffset, baseRot.y + MaxOffset);
+                //ApplyRot.z = Mathf.Clamp(ApplyRot.z + UserMovement.z, baseRot.z - 10f, baseRot.z + 10f);
 
-        if (targetMov)
-        {
-            transform.position = targetTransform.position - targetOffset;
-        }
-        else
-        {
-            ApplyRot.x = Mathf.Clamp(baseRot.x + UserMovement.y * GyroForce, baseRot.x - MaxOffset, baseRot.x + MaxOffset);
-            ApplyRot.y = Mathf.Clamp(baseRot.y + UserMovement.x * GyroForce, baseRot.y - MaxOffset, baseRot.y + MaxOffset);
-            //ApplyRot.z = Mathf.Clamp(ApplyRot.z + UserMovement.z, baseRot.z - 10f, baseRot.z + 10f);
-
-            //transform.Rotate(ApplyRot.x, ApplyRot.y, ApplyRot.z);
-
-            transform.rotation = Quaternion.Euler(ApplyRot);
-        }
-
-        
+                //transform.Rotate(ApplyRot.x, ApplyRot.y, ApplyRot.z);
+                transform.position = basePos + shakeOffset * shakeForce;
+                transform.rotation = Quaternion.Euler(ApplyRot);
+            }
+  
     }
+
+    public void Shake()
+    {
+        shakeOffset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+    }
+
     private static Quaternion GyroToUnity(Quaternion q)
     {
         return new Quaternion(q.x, q.y, -q.z, -q.w);

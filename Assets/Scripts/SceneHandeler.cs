@@ -7,43 +7,64 @@ public class SceneHandeler : MonoBehaviour
 
     public Transform CameraPivot;
     public GyroCamOffset cameraManager;
-    public GameObject[] Objects;
+    //public GameObject[] Objects;
     public Transform riverModePlayer;
 
     public bool riverScene;
+    public bool containsWater;
     // Start is called before the first frame update
     void Start()
     {
         //HideScene();
+        
     }
 
     // Update is called once per frame
     public void ShowScene()
     {
         cameraManager.UpdatePosition(CameraPivot);
-        if(riverScene)
+        if (containsWater)
         {
-            cameraManager.targetTransform = riverModePlayer;
-            cameraManager.targetMov = true;
+            AudioManager.instance.PlayLP(1);
+            //Debug.Log("contains water sound");
         }
         else
         {
-            cameraManager.targetMov = false;
+            AudioManager.instance.FadeLP(1);
         }
 
-
-        for (int i = 0; i < Objects.Length; i++)
+        if (riverScene)
         {
-            Objects[i].SetActive(true);
+            cameraManager.targetTransform = riverModePlayer;
+            cameraManager.targetMov = true;
+            AudioManager.instance.PlayLP(2);
+            FindObjectOfType<MenuManager>().OpenUiRiver();
         }
+        else
+        {
+            AudioManager.instance.FadeLP(2);
+            cameraManager.targetMov = false;
+            FindObjectOfType<MenuManager>().CloseUiRiver();
+        }
+
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+            //Objects[i].SetActive(true);
+        }
+        //transform.childCount;
+        
     }
     public void HideScene()
     {
 
-        for (int i = 0; i < Objects.Length; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            Objects[i].SetActive(false);
+            //Objects[i].SetActive(false);
+            transform.GetChild(i).gameObject.SetActive(false);
         }
+
 
     }
 
