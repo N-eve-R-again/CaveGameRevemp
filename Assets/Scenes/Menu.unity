@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2052,7 +2052,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Scanner somber 2 \nelectric boogaloo"
+  m_text: Cave_Backlogs
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 791118f128f6edb4184033917d3ab1a7, type: 2}
   m_sharedMaterial: {fileID: 5703501699819976052, guid: 791118f128f6edb4184033917d3ab1a7,

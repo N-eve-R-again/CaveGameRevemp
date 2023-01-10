@@ -59,7 +59,6 @@ public class InfoUiAnimation : MonoBehaviour
         {
             flickers[i].StartFlicker();
         }
-        image.sprite = tempData.artwork;
 
 
 

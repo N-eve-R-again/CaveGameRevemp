@@ -56,11 +56,14 @@ public class RiverControl : MonoBehaviour
         {
             stunTimer -= Time.deltaTime;
             cameraManager.Shake();
+            riverUi.Hit();
+            AudioManager.instance.PlayOS(Random.Range(5, 7));
             cameraManager.shakeForce = Mathf.Clamp((stunTimer -0.5f) * 0.2f,0f,1f);
         }
 
 
         riverUi.UpdateSlider(dir);
+        
 
 
     }

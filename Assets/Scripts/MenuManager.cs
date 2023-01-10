@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
     //public int state;
     public bool tutorialScanAvailable;
     public bool tutorialBrokenScanAvailable;
-    public bool tutorialRiverAvailable;
+    public int tutorialRiverAvailable;
 
     public CanvasGroup Codex;
     public CanvasGroup Pause;
     public CanvasGroup MiniPause;
     public CanvasGroup ScannerTutorial;
     public CanvasGroup River;
+    public GameObject[] RiverTutorial;
+    public Button codexButton;
     public CanvasGroup ScannerBrokenTutorial;
 
     public bool newInformation;
@@ -45,6 +48,14 @@ public class MenuManager : MonoBehaviour
         Pause.blocksRaycasts = true;
 
         FindObjectOfType<UiScanner>().OverrideScan = true;
+        if(FindObjectOfType<scanner>().currentState == scanner.scanState.Broken)
+        {
+            codexButton.interactable = false;
+        }
+        else
+        {
+            codexButton.interactable = true;
+        }
         FindObjectOfType<GyroCamOffset>().lockMov = true;
 
     }
@@ -70,6 +81,11 @@ public class MenuManager : MonoBehaviour
         River.alpha = 1f;
         River.interactable = true;
         River.blocksRaycasts = true;
+        if(tutorialRiverAvailable == 2)
+        {
+            RiverTutorial[0].SetActive(true);
+            RiverTutorial[1].SetActive(true);
+        }
     }
     public void CloseUiRiver()
     {

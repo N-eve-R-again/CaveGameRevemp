@@ -129,14 +129,23 @@ public class UiScanner : MonoBehaviour
                         cristaltemp.Recolt();
                         scannerWaitTimer = 0;
                         CanScan = false;
+                        AudioManager.instance.PlayOS(7);
+                    }
+                    else if (hit2.transform.tag == "Respawn")
+                    {
+                        EndArrow endtemp = hit2.transform.GetComponentInParent<EndArrow>();
+                        endtemp.UseArrow();
                     }
                     else
                     {
                         //AudioManager.instance.FadeOS(0);
-                        MainScanner.StartScan();
+                        
                         alreadyScan = true;
                         CanScan = false;
+                        MainScanner.StartScan();
                     }
+
+                    
                 }
                 UiObject.transform.localScale = new Vector3(0f, 0f, 1f);
             }

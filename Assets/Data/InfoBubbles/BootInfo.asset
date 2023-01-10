@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6386806fbee12d4291a3b4d756455fc, type: 3}
-  m_Name: TestInfo
+  m_Name: BootInfo
   m_EditorClassIdentifier: 
-  artwork: {fileID: 21300000, guid: ccfc6393b918e1b49a1c493d49874875, type: 3}
+  artwork: {fileID: 21300000, guid: 6390dbf3e14bbb647b1a68bf90b1405c, type: 3}
   texts:
-  - info_placeholder_name
-  - info_placeholder_descr
-  - info_placeholder_descr
-  - info_placeholder_descr_long
-  codexIndex: 1
+  - info_boot_name
+  - info_boot_descr
+  - info_boot_descr
+  - info_boot_descr
+  codexIndex: 0

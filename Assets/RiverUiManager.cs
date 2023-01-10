@@ -14,4 +14,9 @@ public class RiverUiManager : MonoBehaviour
     {
         slider.value = value;
     }
+
+    public void Hit()
+    {
+        GetComponent<FlickerManager>().StartFlicker();
+    }
 }

@@ -25,6 +25,7 @@ public class InfoPing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Playercamera = FindObjectOfType<Camera>().gameObject;
         MainScanner = FindObjectOfType<scanner>();
         CalculateOffsets();
     }

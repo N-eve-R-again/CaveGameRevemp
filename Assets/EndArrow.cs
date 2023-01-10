@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MoveArrow : MonoBehaviour
+public class EndArrow : MonoBehaviour
 {
     public float minOffset;
     public float maxOffset;
@@ -13,14 +14,7 @@ public class MoveArrow : MonoBehaviour
     public GameObject Playercamera;
     public GameManager gameManager;
     public float distance;
-    //public InfoData data;
-    //public InfoUiAnimation infoCanvas;
-    public infoState currentState;
-    public enum infoState
-    {
-        NotScanned,
-        Saved
-    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,26 +44,15 @@ public class MoveArrow : MonoBehaviour
 
         arrowUi.SetActive(revealed);
 
-        switch (currentState)
-        {
-            case infoState.NotScanned:
                 arrowUi.GetComponent<MeshRenderer>().material.color = Color.yellow;
-                break;
-            case infoState.Saved:
-                arrowUi.SetActive(true);
-                arrowUi.GetComponent<MeshRenderer>().material.color = Color.cyan;
 
-                break;
-            default:
-                break;
-        }
+        
 
     }
     public void UseArrow()
     {
         Debug.Log("ARROW CLICK");
-        gameManager.dir = dir;
-        gameManager.StartFade();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
 }
